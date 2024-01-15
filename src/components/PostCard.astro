@@ -1,0 +1,59 @@
+---
+import type { CollectionEntry } from "astro:content";
+import { Picture } from "astro:assets";
+
+interface Props {
+  post: CollectionEntry<"posts">;
+  isSpecialCard?: boolean;
+}
+
+const { post, isSpecialCard = false } = Astro.props;
+
+if (!post || !post.data) {
+  throw new Error("Post or post.data is undefined");
+}
+
+const { cover, coverAlt, pubDate, title, description } = post.data;
+---
+
+<a href={`/${post.slug}`} class="postcard-link not-prose">
+  <article
+    class={`postcard-article ${
+      isSpecialCard ? "postcard-article-special" : ""
+    }`}
+  >
+    <div
+      class={`postcard-image-container ${
+        isSpecialCard ? "postcard-image-container-special" : ""
+      }`}
+    >
+      <Picture
+        src={cover}
+        alt={coverAlt}
+        width={672}
+        height={378}
+        formats={["avif", "webp"]}
+        fallbackFormat="webp"
+        loading={isSpecialCard ? "eager" : "lazy"}
+      />
+    </div>
+    <div
+      class={`postcard-content ${
+        isSpecialCard
+          ? "postcard-content-special bg-neutral-0"
+          : "bg-gradient-to-t from-neutral-950 to-transparent"
+      }`}
+    >
+      <span class="postcard-date">{new Date(pubDate).toLocaleDateString()}</span
+      >
+      <h2 class="postcard-title">{title}</h2>
+      {
+        isSpecialCard ? (
+          <p class="postcard-description-special">{description}</p>
+        ) : (
+          ""
+        )
+      }
+    </div>
+  </article>
+</a>

@@ -1,0 +1,62 @@
+---
+import { ViewTransitions } from "astro:transitions";
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
+import "../styles/global.css";
+
+// Define default properties with optional overrides from Astro.props
+const {
+  ogImage = "/open-graph.webp", // Default open graph image
+  pageTitle = "开发者资讯周刊", // Default page title
+  description = "收集与前端、后端、AI以及设计相关的资讯", // Default description
+} = Astro.props;
+
+// Generate a full URL for the social sharing image
+const socialImageURL = new URL(
+  ogImage ? ogImage : "/open-graph.webp",
+  Astro.url
+).href;
+---
+
+<!-- HTML structure begins -->
+<html lang="zh-cn">
+  <head>
+    <!-- ViewTransitions  -->
+    <ViewTransitions />
+
+    <!-- Global Metadata -->
+    <meta charset="utf-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.ico" />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="generator" content={Astro.generator} />
+
+    <!-- Primary Meta Tags -->
+    <title>{pageTitle}</title>
+    <meta name="description" content={description} />
+
+    <!-- Sitemap -->
+    <link rel="sitemap" href="/sitemap-index.xml" />
+
+    <!-- Open Graph metadata for improved social media sharing -->
+    <meta property="og:title" content={pageTitle} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={Astro.url} />
+    <meta property="og:image" content={socialImageURL} />
+    <meta property="og:type" content="article" />
+    <meta property="og:locale" content="zh_CN" />
+
+    <!-- Twitter Card metadata for Twitter sharing -->
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta property="twitter:title" content={pageTitle} />
+    <meta property="twitter:description" content={description} />
+    <meta property="twitter:image" content={socialImageURL} />
+  </head>
+  <body
+    class="mx-auto prose prose-neutral px-4 prose-img:rounded dark:prose-invert dark:bg-neutral-900 lg:max-w-screen-lg"
+  >
+    <Header />
+    <h1 class="text-center">{pageTitle}</h1>
+    <slot />
+    <Footer />
+  </body>
+</html>
