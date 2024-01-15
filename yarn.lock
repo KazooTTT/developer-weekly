@@ -2989,9 +2989,9 @@ mkdirp-classic@^0.5.2, mkdirp-classic@^0.5.3:
   resolved "https://registry.npmmirror.com/mkdirp-classic/-/mkdirp-classic-0.5.3.tgz#fa10c9115cc6d8865be221ba47ee9bed78601113"
   integrity sha512-gKLcREMhtuZRwRAfqP3RFW+TK4JqApVBtOIftVgjuABpAtpxhPGaDcfvbhNvD0B8iD1oUr/txX35NjcaY6Ns/A==
 
-motion@^10.16.4:
+motion@^10.17.0:
   version "10.17.0"
-  resolved "https://registry.npmmirror.com/motion/-/motion-10.17.0.tgz#d7ad56f5e8164c0bf097c481311d263961a393fd"
+  resolved "https://registry.yarnpkg.com/motion/-/motion-10.17.0.tgz#d7ad56f5e8164c0bf097c481311d263961a393fd"
   integrity sha512-yBHYkrnJRiomuo88YQzG/v+nzFXKNlKw/Hh7uy8AV7nrYHnE07O6PEECShGbFmZvLrAOGc9qKzEDYmspDYjNWw==
   dependencies:
     "@motionone/animation" "^10.17.0"
